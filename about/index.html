@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>about</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <script src="../assets/js/meny.js"></script>
+    <style>
+        .subTitle {
+            font-style: oblique;
+            color: #1275f4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="meny">
+        <h2>
+            <a href="../">kojikanao.ml</a>
+        </h2>
+        <ul>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="../projects/">Projects</a>
+            </li>
+            <li>
+                <a href="../experiments/">Experiments</a>
+            </li>
+            <li>
+                <a href="mailto:kk2796@nyu.edu">Contact</a>
+            </li>
+        </ul>
+        <br>
+        <h3>Hi, I'm Koji!</h3>
+        <p>I graduated from New York University - Tisch School of the Arts, ITP.</p>
+        <p>While I was an ITP student, I worked for NGEMS as co-founder/CSO. At that time, I worked for wifi sniffing, bluetooth
+            sniffing, and RFID reader.</p>
+        <p>I used to work as a system engineer in Japan.</p>
+        <br>
+        <h4 class="subTitle">Award</h4>
+        <p>Prototyping Fund Spring'17</p>
+        <p>Silicon Harlem Hardware Startup Pitch</p>
+        <p>eBAY Startup Cup Finalist</p>
+        <br>
+        <h4 class="subTitle">Tool</h4>
+        <p>openFrameworks, Processing, Javascript, Python, Swift</p>
+        <br>
+        <h4 class="subTitle">links</h4>
+        <ul>
+            <li>
+                <a href="https://github.com/sleepy-maker">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://twitter.com/sleepy_maker">
+                    <i class="fab fa-twitter-square"></i>
+                </a>
+                <a href="https://www.instagram.com/array_ideasgit">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://medium.com/@sleepy_maker">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <a href="https://vimeo.com/user78777248">
+                    <i class="fab fa-vimeo"></i>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+    <div class="meny-arrow"></div>
+    <div class="contents">
+        <div id="webgl"></div>
+    </div>
+
+
+    <!-- <script src="../../lib/stats.min.js"></script> -->
+    <script>
+        // for menu
+        let meny = Meny.create({
+            // The element that will be animated in from off screen
+            menuElement: document.querySelector('.meny'),
+
+            // The contents that gets pushed aside while Meny is active
+            contentsElement: document.querySelector('.contents'),
+
+            // The alignment of the menu (top/right/bottom/left)
+            position: 'right',
+
+            // The height of the menu (when using top/bottom position)
+            height: 200,
+
+            // The width of the menu (when using left/right position)
+            width: 360,
+
+            // The angle at which the contents will rotate to.
+            angle: 20,
+
+            // The mouse distance from menu position which can trigger menu to open.
+            threshold: 40,
+
+            // Width(in px) of the thin line you see on screen when menu is in closed position.
+            overlap: 6,
+
+            // The total time taken by menu animation.
+            transitionDuration: '0.5s',
+
+            // Transition style for menu animations
+            transitionEasing: 'ease',
+
+            // Gradient overlay for the contents
+            gradient: 'rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.65) 100%)',
+
+            // Use mouse movement to automatically open/close
+            mouse: true,
+
+            // Use touch swipe events to open/close
+            touch: true
+        });
+    </script>
+    <script src="../assets/js/three.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>

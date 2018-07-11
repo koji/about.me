@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>koji</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous"> -->
+
+    <script src="./assets/js/meny.js"></script>
+</head>
+
+<body>
+    <div class="meny">
+        <h2>kojikanao.ml</h2>
+        <ul>
+            <li>
+                <a href="./about/">About</a>
+            </li>
+            <li>
+                <a href="./projects/">Projects</a>
+            </li>
+            <li>
+                <a href="./experiments/">Experiments</a>
+            </li>
+            <li>
+                <a href="mailto:kk2796@nyu.edu">Contact</a>
+            </li>
+            <!-- <li>
+                <a href="https://github.com/sleepy-maker">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://twitter.com/sleepy_maker">
+                    <i class="fab fa-twitter-square"></i>
+                </a>
+                <a href="https://www.instagram.com/array_ideasgit">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://medium.com/@sleepy_maker">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <a href="https://vimeo.com/user78777248">
+                    <i class="fab fa-vimeo"></i>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+    <div class="meny-arrow"></div>
+    <div class="contents">
+        <div id="main"></div>
+    </div>
+
+    <!-- <script src="../lib/stats.min.js"></script> -->
+    <!-- <script src="../lib/dat.gui.min.js"></script> -->
+
+
+    <script>
+        // for menu
+        let meny = Meny.create({
+            // The element that will be animated in from off screen
+            menuElement: document.querySelector('.meny'),
+
+            // The contents that gets pushed aside while Meny is active
+            contentsElement: document.querySelector('.contents'),
+
+            // The alignment of the menu (top/right/bottom/left)
+            position: 'left',
+
+            // The height of the menu (when using top/bottom position)
+            height: 200,
+
+            // The width of the menu (when using left/right position)
+            width: 260,
+
+            // The angle at which the contents will rotate to.
+            angle: 20,
+
+            // The mouse distance from menu position which can trigger menu to open.
+            threshold: 40,
+
+            // Width(in px) of the thin line you see on screen when menu is in closed position.
+            overlap: 6,
+
+            // The total time taken by menu animation.
+            transitionDuration: '0.5s',
+
+            // Transition style for menu animations
+            transitionEasing: 'ease',
+
+            // Gradient overlay for the contents
+            gradient: 'rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.65) 100%)',
+
+            // Use mouse movement to automatically open/close
+            mouse: true,
+
+            // Use touch swipe events to open/close
+            touch: true
+        });
+    </script>
+
+    <script src="./assets/js/three.min.js"></script>
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+            //uniform float floatVal1;
+            void main() {
+                //vUv = uv;
+                //val1 = floatVal1;
+                gl_Position = vec4( position, 1.0 );
+            }
+        </script>
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        uniform float u_time;
+        uniform vec2 u_resolution;
+           
+void main()
+{
+    // centerize
+    vec2 uv = (gl_FragCoord.xy/u_resolution.xy)-.5;
+    
+    float a = atan( uv.x, uv.y );
+	
+	float time = u_time * 5.1 + ((.25+.05*sin(u_time*.1))/(length(uv.xy)+.07))* 2.2;
+    
+    float si;
+    float co;
+    si = sin(time);
+	co = cos(time);
+    
+	mat2 ma = mat2(co, si, -si, co);
+	
+	float c = 0.0;
+	float v1 = 0.0;
+	float v2 = 0.0;
+		
+	for (int i = 0; i < 100; i++)
+	{
+		float s = float(i) * .035;
+		vec3 p = s * vec3(uv, 0.0);
+		p.xy *= ma;
+		p += vec3(.22,.3, s-1.5-sin(time*.13)*.1);
+		for (int i = 0; i < 8; i++)
+		{
+			p = abs(p) / dot(p,p) - 0.659;
+		}
+		v1 += dot(p,p)*.0015 * (1.8+sin(length(uv.xy*13.0)+.5-time*.2));
+		v2 += dot(p,p)*.0015 * (1.5+sin(length(uv.xy*13.5)+2.2-time*.3));
+		c = length(p.xy*.5) * .35;
+	}
+		
+	float len = length(uv);
+	v1 *= smoothstep(.7, .0, len);
+	v2 *= smoothstep(.6, .0, len);
+		
+	float re = clamp(c, 0.0, 1.0);
+	float gr = clamp((v1+c)*.25, 0.0, 1.0);
+	float bl = clamp(v2, 0.0, 1.0);
+	vec3 col = vec3(re, gr, bl) + smoothstep(0.15, .0, len) * .9;
+	
+	gl_FragColor=vec4(col, 1.0);
+}
+
+    </script>
+
+
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="./assets/js/bootstrap.js"></script> -->
+    <script src="./app.js"></script>
+
+</body>
+
+</html>
