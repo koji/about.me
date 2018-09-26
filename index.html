@@ -146,8 +146,8 @@ void main()
 		{
 			p = abs(p) / dot(p,p) - 0.659;
 		}
-		v1 += dot(p,p)*.0015 * (1.8+sin(length(uv.xy*1.0)+.5-time*.2));
-		v2 += dot(p,p)*.0015 * (1.5+sin(length(uv.xy*1.5)+2.2-time*.3));
+		v1 += dot(p,p)*.0015 * (1.8+sin(length(uv.xy*.8)+.5-time*.2));
+		v2 += dot(p,p)*.0015 * (1.5+sin(length(uv.xy*.7)+2.2-time*.3));
 		c = length(p.xy*.5) * .35;
 	}
 		
